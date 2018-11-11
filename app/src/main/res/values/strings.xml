@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BattleShip_ColdWar</string>
+
+    <string name="title_activity_team_selector">TeamSelector</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_team_selection">TeamSelection</string>
 </resources>

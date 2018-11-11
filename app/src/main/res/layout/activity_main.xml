@@ -4,15 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8D0801"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="200dip"
+        android:layout_marginEnd="8dp"
+        android:contentDescription='@String/"logo"'
+        android:scaleType="fitCenter"
+        android:src="@drawable/logogame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/logogame" />
 
+    <Button
+        android:id="@+id/P1Btn"
+        android:layout_width="121dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contextClickable="true"
+        android:enabled="true"
+        android:onClick="transition"
+        android:text="1 Player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/P20Btn"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="2 Players"
+        app:layout_constraintEnd_toEndOf="@+id/P1Btn"
+        app:layout_constraintTop_toBottomOf="@+id/P1Btn" />
+
+    <Button
+        android:id="@+id/OLBtn"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Online"
+        app:layout_constraintEnd_toEndOf="@+id/P20Btn"
+        app:layout_constraintTop_toBottomOf="@+id/P20Btn" />
+
+    <Button
+        android:id="@+id/ProfBtn"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
+        android:text="Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/OLBtn"
+        app:layout_constraintTop_toBottomOf="@+id/OLBtn"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TeamSelection"
+            android:label="@string/title_activity_team_selection"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Locate"></activity>
     </application>
 
 </manifest>
