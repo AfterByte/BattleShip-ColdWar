@@ -15,4 +15,5 @@
     <string name="totalGames">Partidas jugadas</string>
     <string name="winGames">Ganadas</string>
     <string name="lost">Perdidas</string>
+    <string name="SelecNation">Elige tu nacion</string>
 </resources>

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        android:screenOrientation="portrait"
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,14 @@
         <activity
             android:name=".TeamSelection"
             android:label="@string/title_activity_team_selection"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Locate" />
-        <activity android:name=".ProfileActivitie"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Locate"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ProfileActivitie"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

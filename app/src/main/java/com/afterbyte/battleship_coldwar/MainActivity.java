@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         */
 
     }
-    public void transition(View v){
+    public void localmode(View v){
         Intent intent = new Intent(MainActivity.this, TeamSelection.class);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }

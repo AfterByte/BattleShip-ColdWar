@@ -26,16 +26,19 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/holo_orange_light"
         android:contextClickable="true"
         android:enabled="true"
-        android:onClick="transition"
         android:text="@string/btn1ply"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="22dp"
-        tools:layout_editor_absoluteY="216dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/P20Btn"
@@ -43,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:enabled="true"
+        android:onClick="localmode"
         android:text="@string/btn2ply"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
