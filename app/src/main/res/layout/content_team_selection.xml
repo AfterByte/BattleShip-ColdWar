@@ -34,7 +34,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
-        android:onClick="transition"
+        android:onClick="transitionUsa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SelecNation"
@@ -45,6 +45,7 @@
         android:layout_width="266dip"
         android:layout_height="150dip"
         android:layout_marginTop="50dp"
+        android:onClick="transitionRussia"
         app:layout_constraintEnd_toEndOf="@+id/uss"
         app:layout_constraintTop_toBottomOf="@+id/uss"
         app:srcCompat="@drawable/russia" />

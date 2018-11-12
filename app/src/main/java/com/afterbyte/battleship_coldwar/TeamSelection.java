@@ -22,9 +22,17 @@ public class TeamSelection extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-    public void transition(View v){
+    public void transitionUsa(View v){
+
         Intent intent = new Intent(TeamSelection.this, Locate.class);
+        intent.putExtra("country",1);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
+    public void transitionRussia(View v){
+        Intent intent = new Intent(TeamSelection.this, Locate.class);
+        intent.putExtra("country",2);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
 
 }

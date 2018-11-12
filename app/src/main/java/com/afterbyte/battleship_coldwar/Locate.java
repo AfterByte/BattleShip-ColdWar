@@ -1,7 +1,9 @@
 package com.afterbyte.battleship_coldwar;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,19 +11,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Locate extends AppCompatActivity {
-    private String turnString="Your Turn";
+    private String turnString;
+    private String countryPlayer;
     private int player=1;
+    int countryValue;
+
 
     public String getTurnString(){
         return turnString;
     }
     public void setTurnString(){
-        if(turnString.equals("Your Turn")){
-            turnString="Enemy Turn";
+        if(turnString.equals("USA turn")){
+            turnString="Russia turn";
             player=2;
         }
         else{
-            turnString="Your Turn";
+            turnString="USA turn";
             player=1;
         }
     }
@@ -42,11 +47,31 @@ public class Locate extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_locate);
+        countryValue=getIntent().getExtras().getInt("country");
+        if(countryValue==1){
+             turnString="USA turn";
+             countryPlayer="USA";
+        }
+        else if(countryValue==2){
+            turnString="Russia turn";
+            countryPlayer="RUSSIA";
+        }
+        TextView countryText = (TextView) findViewById(R.id.turnMessage);
+        countryText.setText(turnString);
 
-
+    }
+    public void setFace(Button btn){
+        if(turnString.equals("USA turn")){
+            btn.setBackgroundResource(R.drawable.trump);
+        }
+        else {
+            btn.setBackgroundResource(R.drawable.putin);
+        }
     }
 
     public void Btn00Action(View v){
+        Button Btn00=(Button) findViewById(R.id.btn00);
+        setFace(Btn00);
         if(player==1){
             setMatrix(0,0,1);
             player=2;
@@ -55,11 +80,12 @@ public class Locate extends AppCompatActivity {
             setMatrix(0,0,10);
             player=1;
         }
-        Button Btn00=(Button) findViewById(R.id.btn00);
+
         Btn00.setEnabled(false);
         verifyGame();
 
     }
+
     public void Btn01Action(View v){
         if(player==1){
             setMatrix(0,1,1);
@@ -69,8 +95,9 @@ public class Locate extends AppCompatActivity {
             setMatrix(0,1,10);
             player=1;
         }
-        Button Btn02=(Button) findViewById(R.id.Btn01);
-        Btn02.setEnabled(false);
+        Button Btn01=(Button) findViewById(R.id.Btn01);
+        setFace(Btn01);
+        Btn01.setEnabled(false);
         verifyGame();
     }
 
@@ -84,6 +111,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn02=(Button) findViewById(R.id.Btn02);
+        setFace(Btn02);
         Btn02.setEnabled(false);
         verifyGame();
     }
@@ -98,6 +126,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn10=(Button) findViewById(R.id.Btn10);
+        setFace(Btn10);
         Btn10.setEnabled(false);
         verifyGame();
     }
@@ -112,6 +141,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn11=(Button) findViewById(R.id.Btn11);
+        setFace(Btn11);
         Btn11.setEnabled(false);
         verifyGame();
     }
@@ -126,6 +156,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn12=(Button) findViewById(R.id.Btn12);
+        setFace(Btn12);
         Btn12.setEnabled(false);
         verifyGame();
     }
@@ -140,6 +171,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn20=(Button) findViewById(R.id.Btn20);
+        setFace(Btn20);
         Btn20.setEnabled(false);
         verifyGame();
     }
@@ -154,6 +186,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn21=(Button) findViewById(R.id.Btn21);
+        setFace(Btn21);
         Btn21.setEnabled(false);
         verifyGame();
     }
@@ -168,6 +201,7 @@ public class Locate extends AppCompatActivity {
             player=1;
         }
         Button Btn22=(Button) findViewById(R.id.Btn22);
+        setFace(Btn22);
         Btn22.setEnabled(false);
         verifyGame();
     }
@@ -255,16 +289,26 @@ public class Locate extends AppCompatActivity {
     public void setWinnerMessage(int player){
         if(player==2){
             TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-            turnMessage.setText("YOU LOSE");
+            if(countryPlayer.equals("RUSSIA")){
+                turnMessage.setText("USA WINS");
+            }
+            else{
+                turnMessage.setText("RUSSIA WINS");
+            }
+
         }
         else if(player==1){
             TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-            turnMessage.setText("YOU WIN");
+            if(countryPlayer.equals("RUSSIA")){
+                turnMessage.setText("RUSSIA WINS");
+            }
+            else{
+                turnMessage.setText("USA WINS");
+            }
         }
     }
 
     public void verifyGame(){
-
         //CHECK IF TABLE IS FULL
         if(isComplete()){
             int winner=winCheck();
@@ -279,10 +323,19 @@ public class Locate extends AppCompatActivity {
         }
         else{
             int winner=winCheck();
+            TextView test=(TextView) findViewById(R.id.test);
+            test.setText("loles");
             if(winner==0){
+                test.setText("0");
                 changeTurnMessage();
             }
             else{
+                if(winner ==1){
+                    test.setText("1");
+                }
+                else{
+                    test.setText("2");
+                }
                 setWinnerMessage(winner);
                 setAllButtonsEnabled(false);
             }
