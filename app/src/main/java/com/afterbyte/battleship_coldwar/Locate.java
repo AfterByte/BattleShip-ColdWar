@@ -1,9 +1,7 @@
 package com.afterbyte.battleship_coldwar;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,35 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Locate extends AppCompatActivity {
-    private String turnString;
-    private String countryPlayer;
-    private int player=1;
-    int countryValue;
 
-
-    public String getTurnString(){
-        return turnString;
-    }
-    public void setTurnString(){
-        if(turnString.equals("USA turn")){
-            turnString="Russia turn";
-            player=2;
-        }
-        else{
-            turnString="USA turn";
-            player=1;
-        }
-    }
-
-    private int matrix[][]=new int[3][3];
-
-    public int getMatrix(int x,int y){
-        return matrix[x][y];
-    }
-
-    public void setMatrix(int x,int y,int i){
-        matrix[x][y]=i;
-    }
+    private String playerOneCountry, playerTwoCountry;
+    private String turnMessage;
+    private int playerTurn;
+    private int[][] board=new int[3][3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,182 +21,183 @@ public class Locate extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_locate);
-        countryValue=getIntent().getExtras().getInt("country");
-        if(countryValue==1){
-             turnString="USA turn";
-             countryPlayer="USA";
-        }
-        else if(countryValue==2){
-            turnString="Russia turn";
-            countryPlayer="RUSSIA";
-        }
-        TextView countryText = (TextView) findViewById(R.id.turnMessage);
-        countryText.setText(turnString);
 
-    }
-    public void setFace(Button btn){
-        if(turnString.equals("USA turn")){
-            btn.setBackgroundResource(R.drawable.trump);
-        }
-        else {
-            btn.setBackgroundResource(R.drawable.putin);
-        }
-    }
+        restartBackgroud();
 
-    public void Btn00Action(View v){
-        Button Btn00=(Button) findViewById(R.id.btn00);
-        setFace(Btn00);
-        if(player==1){
-            setMatrix(0,0,1);
-            player=2;
+        playerOneCountry=getIntent().getExtras().getString("country");
+        TextView turnMessageView= (TextView) findViewById(R.id.turnMessage);
+        turnMessageView.setText(playerOneCountry.concat(" turn"));
+        playerTurn=1;
+        if(playerOneCountry.equals("USA")){
+            playerTwoCountry="Russia";
         }
         else{
-            setMatrix(0,0,10);
-            player=1;
+            playerTwoCountry="USA";
         }
 
-        Btn00.setEnabled(false);
-        verifyGame();
+    }
 
+    public void setFace(Button btn){
+        if(playerTurn==1){
+            if(playerOneCountry.equals("USA")){
+                btn.setBackgroundResource(R.drawable.trump);
+            }
+            else{
+                btn.setBackgroundResource(R.drawable.putin);
+            }
+
+        }
+        else{
+            if(playerTwoCountry.equals("USA")){
+                btn.setBackgroundResource(R.drawable.trump);
+            }
+            else{
+                btn.setBackgroundResource(R.drawable.putin);
+            }
+        }
+    }
+
+
+    public void Btn00Action(View v){
+        Button btn00=(Button) findViewById(R.id.btn00);
+        setFace(btn00);
+        if(playerTurn==1){
+            makeMove(0,0,1);
+        }
+        else if(playerTurn==2){
+            makeMove(0,0,10);
+        }
     }
 
     public void Btn01Action(View v){
-        if(player==1){
-            setMatrix(0,1,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn01);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(0,1,1);
         }
-        else{
-            setMatrix(0,1,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(0,1,10);
         }
-        Button Btn01=(Button) findViewById(R.id.Btn01);
-        setFace(Btn01);
-        Btn01.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn02Action(View v){
-        if(player==1){
-            setMatrix(0,2,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn02);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(0,2,1);
         }
-        else{
-            setMatrix(0,2,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(0,2,10);
         }
-        Button Btn02=(Button) findViewById(R.id.Btn02);
-        setFace(Btn02);
-        Btn02.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn10Action(View v){
-        if(player==1){
-            setMatrix(1,0,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn10);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(1,0,1);
         }
-        else{
-            setMatrix(1,0,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(1,0,10);
         }
-        Button Btn10=(Button) findViewById(R.id.Btn10);
-        setFace(Btn10);
-        Btn10.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn11Action(View v){
-        if(player==1){
-            setMatrix(1,1,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn11);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(1,1,1);
         }
-        else{
-            setMatrix(1,1,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(1,1,10);
         }
-        Button Btn11=(Button) findViewById(R.id.Btn11);
-        setFace(Btn11);
-        Btn11.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn12Action(View v){
-        if(player==1){
-            setMatrix(1,2,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn12);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(1,2,1);
         }
-        else{
-            setMatrix(1,2,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(1,2,10);
         }
-        Button Btn12=(Button) findViewById(R.id.Btn12);
-        setFace(Btn12);
-        Btn12.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn20Action(View v){
-        if(player==1){
-            setMatrix(2,0,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn20);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(2,0,1);
         }
-        else{
-            setMatrix(2,0,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(2,0,10);
         }
-        Button Btn20=(Button) findViewById(R.id.Btn20);
-        setFace(Btn20);
-        Btn20.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn21Action(View v){
-        if(player==1){
-            setMatrix(2,1,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn21);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(2,1,1);
         }
-        else{
-            setMatrix(2,1,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(2,1,10);
         }
-        Button Btn21=(Button) findViewById(R.id.Btn21);
-        setFace(Btn21);
-        Btn21.setEnabled(false);
-        verifyGame();
     }
 
     public void Btn22Action(View v){
-        if(player==1){
-            setMatrix(2,2,1);
-            player=2;
+        Button btn=(Button) findViewById(R.id.Btn22);
+        setFace(btn);
+        if(playerTurn==1){
+            makeMove(2,2,1);
         }
-        else{
-            setMatrix(2,2,10);
-            player=1;
+        else if(playerTurn==2){
+            makeMove(2,2,10);
         }
-        Button Btn22=(Button) findViewById(R.id.Btn22);
-        setFace(Btn22);
-        Btn22.setEnabled(false);
-        verifyGame();
     }
 
-    public void changeTurnMessage(){
-        TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-        setTurnString();
-        turnMessage.setText(getTurnString());
-    }
+    public void BtnResetAction(View v){
+        playerTurn=1;
+        TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
+        turnMessageView.setText(playerOneCountry.concat(" turn"));
 
-    public boolean isComplete(){
-        //RETURNS TRUE IF THERE ARE NO CELLS AVAILABLE, FALSE IF STILL THERE ARE CELL AVAILABLE
-        int cont=0;
-        for(int x=0;x<3;x++) {
-            for (int y = 0; y < 3; y++) {
-                if (matrix[x][y] == 0) {
-                    cont++;
-                }
+        //make board to 0
+        for(int x=0;x<3;x++){
+            for(int y=0; y<3;y++){
+                board[x][y]=0;
             }
         }
-        return cont==0;
+
+        setAllButtonsEnabled(true);
+        restartBackgroud();
+    }
+
+    public void makeMove(int x, int y, int value){
+        board[x][y]=value;
+        verifyGame();
+    }
+    public void verifyGame(){
+        int winner=winCheck();
+        if(winner==0){
+            if(isComplete()){
+                TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
+                turnMessageView.setText("TIED GAME");
+            }
+            else{
+                changeTurn();
+            }
+        }
+        else if(winner==1){
+            setAllButtonsEnabled(false);
+            setWinnerMessage(1);
+            resetMode();
+        }
+        else{
+            setAllButtonsEnabled(false);
+            setWinnerMessage(2);
+            resetMode();
+        }
     }
 
     public int winCheck(){
@@ -231,7 +206,7 @@ public class Locate extends AppCompatActivity {
         //Check file per file
         for(int x=0;x<3;x++){
             for(int y=0;y<3;y++){
-                sum+=matrix[x][y];
+                sum+=board[x][y];
             }
             if(sum==3){
                 return 1;
@@ -247,7 +222,7 @@ public class Locate extends AppCompatActivity {
         sum=0;
         for(int y=0;y<3;y++){
             for(int x=0;x<3;x++){
-                sum+=matrix[x][y];
+                sum+=board[x][y];
             }
             if(sum==3){
                 return 1;
@@ -262,7 +237,7 @@ public class Locate extends AppCompatActivity {
         //Check Main Diagonal
         sum=0;
         for(int i=0;i<3;i++){
-            sum+=matrix[i][i];
+            sum+=board[i][i];
         }
         if(sum==3){
             return 1;
@@ -272,9 +247,9 @@ public class Locate extends AppCompatActivity {
         }
         //Check inverted main diagonal
         sum=0;
-        sum+=matrix[0][2];
-        sum+=matrix[1][1];
-        sum+=matrix[2][0];
+        sum+=board[0][2];
+        sum+=board[1][1];
+        sum+=board[2][0];
         if(sum==3){
             return 1;
         }
@@ -286,59 +261,38 @@ public class Locate extends AppCompatActivity {
         }
     }
 
-    public void setWinnerMessage(int player){
-        if(player==2){
-            TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-            if(countryPlayer.equals("RUSSIA")){
-                turnMessage.setText("USA WINS");
+    public boolean isComplete(){
+        //RETURNS TRUE IF THERE ARE NO CELLS AVAILABLE, FALSE IF STILL THERE ARE CELL AVAILABLE
+        int cont=0;
+        for(int x=0;x<3;x++) {
+            for (int y = 0; y < 3; y++) {
+                if (board[x][y] == 0) {
+                    cont++;
+                }
             }
-            else{
-                turnMessage.setText("RUSSIA WINS");
-            }
-
         }
-        else if(player==1){
-            TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-            if(countryPlayer.equals("RUSSIA")){
-                turnMessage.setText("RUSSIA WINS");
-            }
-            else{
-                turnMessage.setText("USA WINS");
-            }
+        return cont==0;
+    }
+
+    public void changeTurn(){
+        TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
+        if(playerTurn==1){
+            playerTurn=2;
+            turnMessage.setText(playerTwoCountry + " turn");
+        }
+        else{
+            playerTurn=1;
+            turnMessage.setText(playerOneCountry + " turn");
         }
     }
 
-    public void verifyGame(){
-        //CHECK IF TABLE IS FULL
-        if(isComplete()){
-            int winner=winCheck();
-            if(winner==0){
-                TextView turnMessage=(TextView) findViewById(R.id.turnMessage);
-                turnMessage.setText("TIED GAME");
-            }
-            else{
-                setWinnerMessage(winner);
-                setAllButtonsEnabled(false);
-            }
+    public void setWinnerMessage(int player){
+        TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
+        if(player == 1){
+            turnMessageView.setText(playerOneCountry+" wins");
         }
         else{
-            int winner=winCheck();
-            TextView test=(TextView) findViewById(R.id.test);
-            test.setText("loles");
-            if(winner==0){
-                test.setText("0");
-                changeTurnMessage();
-            }
-            else{
-                if(winner ==1){
-                    test.setText("1");
-                }
-                else{
-                    test.setText("2");
-                }
-                setWinnerMessage(winner);
-                setAllButtonsEnabled(false);
-            }
+            turnMessageView.setText(playerTwoCountry+" wins");
         }
     }
 
@@ -369,5 +323,40 @@ public class Locate extends AppCompatActivity {
 
         Button Btn22=(Button) findViewById(R.id.Btn22);
         Btn22.setEnabled(b);
+    }
+
+    public void resetMode(){
+        Button resetBtn=(Button) findViewById(R.id.BtnReset);
+        resetBtn.setVisibility(View.VISIBLE);
+        resetBtn.setEnabled(true);
+    }
+
+    public void restartBackgroud(){
+        Button Btn00=(Button) findViewById(R.id.btn00);
+        Btn00.setBackground(null);
+
+        Button Btn01=(Button) findViewById(R.id.Btn01);
+        Btn01.setBackground(null);
+
+        Button Btn02=(Button) findViewById(R.id.Btn02);
+        Btn02.setBackground(null);
+
+        Button Btn10=(Button) findViewById(R.id.Btn10);
+        Btn10.setBackground(null);
+
+        Button Btn11=(Button) findViewById(R.id.Btn11);
+        Btn11.setBackground(null);
+
+        Button Btn12=(Button) findViewById(R.id.Btn12);
+        Btn12.setBackground(null);
+
+        Button Btn20=(Button) findViewById(R.id.Btn20);
+        Btn20.setBackground(null);
+
+        Button Btn21=(Button) findViewById(R.id.Btn21);
+        Btn21.setBackground(null);
+
+        Button Btn22=(Button) findViewById(R.id.Btn22);
+        Btn22.setBackground(null);
     }
 }

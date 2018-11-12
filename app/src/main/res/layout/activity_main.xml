@@ -45,6 +45,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@android:color/holo_orange_light"
         android:enabled="true"
         android:onClick="localmode"
         android:text="@string/btn2ply"
@@ -52,8 +53,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/P1Btn"
-        app:layout_constraintTop_toBottomOf="@+id/P1Btn"
-        tools:background="@android:color/holo_orange_light" />
+        app:layout_constraintTop_toBottomOf="@+id/P1Btn" />
 
     <Button
         android:id="@+id/OLBtn"

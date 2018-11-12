@@ -25,12 +25,12 @@ public class TeamSelection extends AppCompatActivity {
     public void transitionUsa(View v){
 
         Intent intent = new Intent(TeamSelection.this, Locate.class);
-        intent.putExtra("country",1);
+        intent.putExtra("country","USA");
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
     public void transitionRussia(View v){
         Intent intent = new Intent(TeamSelection.this, Locate.class);
-        intent.putExtra("country",2);
+        intent.putExtra("country","Russia");
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
