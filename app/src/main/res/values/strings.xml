@@ -5,6 +5,11 @@
     <string name="btnOnline">Online</string>
     <string name="btnProfile">Profile</string>
     <string name="selectYourNation">Select your nation</string>
+    <string name="profile">Profile</string>
+    <string name="totalGames">Partides played</string>
+    <string name="winGames">Won</string>
+    <string name="lost">Lost</string>
+
 
     <string name="title_activity_team_selector">TeamSelector</string>
     <string name="dummy_button">Dummy Button</string>

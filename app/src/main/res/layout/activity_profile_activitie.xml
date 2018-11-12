@@ -8,7 +8,7 @@
     tools:context=".ProfileActivitie">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/totalGames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/totalGames"
+        app:layout_constraintTop_toBottomOf="@+id/totalGames" />
 
     <TextView
         android:id="@+id/textView3"
@@ -53,8 +53,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="@string/btnProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="68dp" />
 </android.support.constraint.ConstraintLayout>
