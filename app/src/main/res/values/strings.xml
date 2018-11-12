@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">BattleShip_ColdWar</string>
+    <string name="app_name">TicTacToe_ColdWar</string>
+    <string name="btn1ply">1 player</string>
+    <string name="btn2ply">2 players</string>
+    <string name="btnOnline">Online</string>
+    <string name="btnProfile">Profile</string>
+    <string name="selectYourNation">Select your nation</string>
+    <string name="profile">Profile</string>
+    <string name="totalGames">Partides played</string>
+    <string name="winGames">Won</string>
+    <string name="lost">Lost</string>
+
 
     <string name="title_activity_team_selector">TeamSelector</string>
     <string name="dummy_button">Dummy Button</string>
