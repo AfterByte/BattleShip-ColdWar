@@ -23,44 +23,58 @@
 
     <Button
         android:id="@+id/P1Btn"
-        android:layout_width="121dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_orange_light"
         android:contextClickable="true"
         android:enabled="true"
         android:onClick="transition"
-        android:text="1 Player"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:text="@string/btn1ply"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="216dp" />
 
     <Button
         android:id="@+id/P20Btn"
-        android:layout_width="122dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="2 Players"
+        android:enabled="true"
+        android:text="@string/btn2ply"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/P1Btn"
-        app:layout_constraintTop_toBottomOf="@+id/P1Btn" />
+        app:layout_constraintTop_toBottomOf="@+id/P1Btn"
+        tools:background="@android:color/holo_orange_light" />
 
     <Button
         android:id="@+id/OLBtn"
-        android:layout_width="125dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Online"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/btnOnline"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/P20Btn"
         app:layout_constraintTop_toBottomOf="@+id/P20Btn" />
 
     <Button
         android:id="@+id/ProfBtn"
-        android:layout_width="127dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="80dp"
-        android:text="Profile"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/btnProfile"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/OLBtn"
         app:layout_constraintTop_toBottomOf="@+id/OLBtn"

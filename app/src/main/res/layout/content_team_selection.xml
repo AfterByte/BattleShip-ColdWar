@@ -47,5 +47,5 @@
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="@+id/uss"
         app:layout_constraintTop_toBottomOf="@+id/uss"
-        app:srcCompat="@drawable/urss" />
+        app:srcCompat="@drawable/russia" />
 </android.support.constraint.ConstraintLayout>

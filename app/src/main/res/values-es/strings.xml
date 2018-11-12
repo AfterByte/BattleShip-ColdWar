@@ -11,4 +11,8 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_team_selection">Seleccion de equipo</string>
+    <string name="profile">Perfil</string>
+    <string name="totalGames">Partidas jugadas</string>
+    <string name="winGames">Ganadas</string>
+    <string name="lost">Perdidas</string>
 </resources>
