@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicTacToe_ColdWar</string>
+    <string name="btn1ply">1 Jugador</string>
+    <string name="btn2ply">2 Jugadores</string>
+    <string name="btnOnline">Online</string>
+    <string name="btnProfile">Perfil</string>
+    <string name="selectYourNation">Selecciona tu nacion</string>
+
+    <string name="title_activity_team_selector">Seleccion de equipo</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_team_selection">Seleccion de equipo</string>
+</resources>

@@ -20,7 +20,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/raleway_thin"
-        android:text="Select your nation"
+        android:text="@string/selectYourNation"
         android:textColor="#FFFFFF"
         android:textSize="40dp"
         android:textStyle="bold"
@@ -48,5 +48,5 @@
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="@+id/uss"
         app:layout_constraintTop_toBottomOf="@+id/uss"
-        app:srcCompat="@drawable/urss" />
+        app:srcCompat="@drawable/russia" />
 </android.support.constraint.ConstraintLayout>

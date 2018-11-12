@@ -85,7 +85,6 @@ public class Locate extends AppCompatActivity {
         }
         Button Btn02=(Button) findViewById(R.id.Btn02);
         Btn02.setEnabled(false);
-        Btn02.setBackgroundColor(999999);
         verifyGame();
     }
 
