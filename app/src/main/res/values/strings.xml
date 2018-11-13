@@ -16,4 +16,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_team_selection">TeamSelection</string>
     <string name="SelecNation">Select your nation</string>
+    <string name="USA">USA</string>
+    <string name="russia">Russia</string>
+    <string name="reset">Reset</string>
 </resources>

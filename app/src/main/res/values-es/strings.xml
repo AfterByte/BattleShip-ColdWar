@@ -16,4 +16,7 @@
     <string name="winGames">Ganadas</string>
     <string name="lost">Perdidas</string>
     <string name="SelecNation">Elige tu nacion</string>
+    <string name="USA">EE.UU</string>
+    <string name="russia">Rusia</string>
+    <string name="reset">Reiniciar</string>
 </resources>

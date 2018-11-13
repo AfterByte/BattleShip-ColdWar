@@ -2,16 +2,13 @@ package com.afterbyte.battleship_coldwar;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
-
-import java.io.File;
 
 public class MainActivity extends Activity {
 
@@ -27,7 +24,8 @@ public class MainActivity extends Activity {
         editor.putBoolean("firstRun",true);
         editor.commit();
         */
-
+        MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.maintheme);
+        ring.start();
     }
 
     public void localOnePlayer(View v){

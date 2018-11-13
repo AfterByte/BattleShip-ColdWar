@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8D0801"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".Locate">
 
@@ -157,9 +157,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/roundedbtn"
         android:enabled="false"
         android:onClick="BtnResetAction"
         android:text="Reset"
+        android:textColor="@color/fontPrimary"
+        android:textSize="16dip"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
