@@ -29,8 +29,16 @@ public class MainActivity extends Activity {
         */
 
     }
+
+    public void localOnePlayer(View v){
+        Intent intent = new Intent(MainActivity.this, TeamSelection.class);
+        intent.putExtra("mode",1);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
     public void localmode(View v){
         Intent intent = new Intent(MainActivity.this, TeamSelection.class);
+        intent.putExtra("mode",2);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }

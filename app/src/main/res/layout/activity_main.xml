@@ -32,6 +32,7 @@
         android:background="@android:color/holo_orange_light"
         android:contextClickable="true"
         android:enabled="true"
+        android:onClick="localOnePlayer"
         android:text="@string/btn1ply"
         android:textColor="#FFFFFF"
         android:textSize="24sp"

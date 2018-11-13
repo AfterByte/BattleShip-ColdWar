@@ -13,6 +13,11 @@ import android.view.WindowManager;
 
 public class TeamSelection extends AppCompatActivity {
 
+
+    //
+    int mode;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +26,30 @@ public class TeamSelection extends AppCompatActivity {
         setContentView(R.layout.activity_team_selection);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        setMode();
+
     }
     public void transitionUsa(View v){
 
         Intent intent = new Intent(TeamSelection.this, Locate.class);
         intent.putExtra("country","USA");
+
+        intent.putExtra("mode",mode);
+
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
     public void transitionRussia(View v){
         Intent intent = new Intent(TeamSelection.this, Locate.class);
         intent.putExtra("country","Russia");
+
+        intent.putExtra("mode",mode);
+
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
+    public void setMode(){
+        mode=getIntent().getExtras().getInt("mode");
     }
 
 

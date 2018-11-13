@@ -11,9 +11,10 @@ import android.widget.TextView;
 public class Locate extends AppCompatActivity {
 
     private String playerOneCountry, playerTwoCountry;
-    private String turnMessage;
     private int playerTurn;
     private int[][] board=new int[3][3];
+
+    private int mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,9 @@ public class Locate extends AppCompatActivity {
         setContentView(R.layout.activity_locate);
 
         restartBackgroud();
+
+        mode=getIntent().getExtras().getInt("mode");
+
 
         playerOneCountry=getIntent().getExtras().getString("country");
         TextView turnMessageView= (TextView) findViewById(R.id.turnMessage);
@@ -63,10 +67,15 @@ public class Locate extends AppCompatActivity {
         setFace(btn00);
         if(playerTurn==1){
             makeMove(0,0,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(0,0,10);
         }
+        btn00.setEnabled(false);
+
     }
 
     public void Btn01Action(View v){
@@ -74,10 +83,15 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(0,1,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(0,1,10);
         }
+
+        btn.setEnabled(false);
     }
 
     public void Btn02Action(View v){
@@ -85,10 +99,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(0,2,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(0,2,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn10Action(View v){
@@ -96,10 +114,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(1,0,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(1,0,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn11Action(View v){
@@ -107,10 +129,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(1,1,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(1,1,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn12Action(View v){
@@ -118,10 +144,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(1,2,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(1,2,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn20Action(View v){
@@ -129,10 +159,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(2,0,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(2,0,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn21Action(View v){
@@ -140,10 +174,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(2,1,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(2,1,10);
         }
+        btn.setEnabled(false);
     }
 
     public void Btn22Action(View v){
@@ -151,10 +189,14 @@ public class Locate extends AppCompatActivity {
         setFace(btn);
         if(playerTurn==1){
             makeMove(2,2,1);
+            if(mode==1){
+                computerMove();
+            }
         }
         else if(playerTurn==2){
             makeMove(2,2,10);
         }
+        btn.setEnabled(false);
     }
 
     public void BtnResetAction(View v){
@@ -332,31 +374,115 @@ public class Locate extends AppCompatActivity {
     }
 
     public void restartBackgroud(){
-        Button Btn00=(Button) findViewById(R.id.btn00);
-        Btn00.setBackground(null);
+        Button Btn=(Button) findViewById(R.id.btn00);
+        Btn.setBackground(null);
 
-        Button Btn01=(Button) findViewById(R.id.Btn01);
-        Btn01.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn01);
+        Btn.setBackground(null);
 
-        Button Btn02=(Button) findViewById(R.id.Btn02);
-        Btn02.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn02);
+        Btn.setBackground(null);
 
-        Button Btn10=(Button) findViewById(R.id.Btn10);
-        Btn10.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn10);
+        Btn.setBackground(null);
 
-        Button Btn11=(Button) findViewById(R.id.Btn11);
-        Btn11.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn11);
+        Btn.setBackground(null);
 
-        Button Btn12=(Button) findViewById(R.id.Btn12);
-        Btn12.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn12);
+        Btn.setBackground(null);
 
-        Button Btn20=(Button) findViewById(R.id.Btn20);
-        Btn20.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn20);
+        Btn.setBackground(null);
 
-        Button Btn21=(Button) findViewById(R.id.Btn21);
-        Btn21.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn21);
+        Btn.setBackground(null);
 
-        Button Btn22=(Button) findViewById(R.id.Btn22);
-        Btn22.setBackground(null);
+        Btn=(Button) findViewById(R.id.Btn22);
+        Btn.setBackground(null);
+
+        Btn=(Button) findViewById(R.id.BtnReset);
+        Btn.setVisibility(View.INVISIBLE);
+        Btn.setEnabled(false);
+    }
+
+    public void computerMove(){
+        try{
+            setAllButtonsEnabled(false);
+            //Thread.sleep(200);
+            setAllButtonsEnabled(true);
+        }
+        catch (Exception e){
+
+        }
+        boolean flag=false;
+        int x,y, cont=0;
+        do{
+            cont++;
+            x=roundNumber(Math.random());
+            y=roundNumber(Math.random());
+            if(valideCell(x,y)){
+                flag=true;
+            }
+        }while(!flag && cont<100);
+        if(cont ==100){
+            changeTurn();
+            return;
+        }
+        else{
+            activateButton(x,y);
+        }
+
+    }
+
+    public int roundNumber(double d){
+        if(d >= 0 && d<=0.32){
+            return 0;
+        }
+        else if( d>0.32 && d<=0.65){
+            return 1;
+        }
+        else if(d>0.66 && d<=1){
+            return 2;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public boolean valideCell(int x,int y){
+        return board[x][y]==0;
+    }
+
+    public void activateButton(int x, int y){
+        Button btn=null;
+        if(x==0 && y==0){
+            btn=(Button) findViewById(R.id.btn00);
+        }
+        else if(x==0 && y==1){
+            btn=(Button) findViewById(R.id.Btn01);
+        }
+        else if(x==0 && y==2){
+            btn=(Button) findViewById(R.id.Btn02);
+        }
+        else if(x==1 && y==0){
+            btn=(Button) findViewById(R.id.Btn10);
+        }
+        else if(x==1 && y==1){
+            btn=(Button) findViewById(R.id.Btn11);
+        }
+        else if(x==1 && y==2){
+            btn=(Button) findViewById(R.id.Btn12);
+        }
+        else if(x==2 && y==0){
+            btn=(Button) findViewById(R.id.Btn20);
+        }
+        else if(x==2 && y==1){
+            btn=(Button) findViewById(R.id.Btn21);
+        }
+        else if(x==2 && y==2){
+            btn=(Button) findViewById(R.id.Btn22);
+        }
+        btn.performClick();
     }
 }
