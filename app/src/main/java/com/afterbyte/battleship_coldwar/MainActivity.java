@@ -12,6 +12,9 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity {
 
+
+    MediaPlayer theme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,19 +27,36 @@ public class MainActivity extends Activity {
         editor.putBoolean("firstRun",true);
         editor.commit();
         */
-        MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.maintheme);
-        ring.start();
+        theme= MediaPlayer.create(MainActivity.this,R.raw.maintheme);
+        theme.start();
     }
 
     public void localOnePlayer(View v){
+        theme.stop();
+        MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.btnfx);
+        ring.start();
         Intent intent = new Intent(MainActivity.this, TeamSelection.class);
         intent.putExtra("mode",1);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        startActivity(intent);
+        this.finish();
     }
 
     public void localmode(View v){
+        theme.stop();
+        MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.btnfx);
+        ring.start();
         Intent intent = new Intent(MainActivity.this, TeamSelection.class);
         intent.putExtra("mode",2);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        startActivity(intent);
+        this.finish();
+    }
+
+    public void waitActivity(){
+        try{
+            Thread.sleep(1100);
+        }
+        catch (Exception e){
+
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.afterbyte.battleship_coldwar;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ public class TeamSelection extends AppCompatActivity {
 
     //
     int mode;
+    MediaPlayer theme;
 
 
     @Override
@@ -27,29 +29,53 @@ public class TeamSelection extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        theme= MediaPlayer.create(TeamSelection.this,R.raw.teamselector);
+        theme.start();
+
         setMode();
 
     }
     public void transitionUsa(View v){
+        MediaPlayer ring= MediaPlayer.create(TeamSelection.this,R.raw.btnfx);
+        ring.start();
+
+        theme.stop();
+
 
         Intent intent = new Intent(TeamSelection.this, Locate.class);
         intent.putExtra("country","USA");
 
         intent.putExtra("mode",mode);
 
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        startActivity(intent);
+        this.finish();
     }
     public void transitionRussia(View v){
+        MediaPlayer ring= MediaPlayer.create(TeamSelection.this,R.raw.btnfx);
+        ring.start();
+        theme.stop();
+
         Intent intent = new Intent(TeamSelection.this, Locate.class);
         intent.putExtra("country","Russia");
 
         intent.putExtra("mode",mode);
 
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        startActivity(intent);
+        this.finish();
     }
 
     public void setMode(){
         mode=getIntent().getExtras().getInt("mode");
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(TeamSelection.this, MainActivity.class);
+        theme.stop();
+        startActivity(intent);
+        this.finish();
     }
 
 

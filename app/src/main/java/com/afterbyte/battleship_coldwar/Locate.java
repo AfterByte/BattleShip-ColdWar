@@ -1,5 +1,8 @@
 package com.afterbyte.battleship_coldwar;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Locate extends AppCompatActivity {
+
+    MediaPlayer theme;
+
+    MediaPlayer winnertheme;
 
     private String playerOneCountry, playerTwoCountry;
     private int playerTurn;
@@ -22,6 +29,9 @@ public class Locate extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_locate);
+
+        theme= MediaPlayer.create(Locate.this,R.raw.gametheme);
+        theme.start();
 
         restartBackgroud();
 
@@ -200,6 +210,9 @@ public class Locate extends AppCompatActivity {
     }
 
     public void BtnResetAction(View v){
+        winnertheme.stop();
+        theme=MediaPlayer.create(Locate.this,R.raw.gametheme);
+        theme.start();
         playerTurn=1;
         TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
         turnMessageView.setText(playerOneCountry.concat(" turn"));
@@ -216,6 +229,9 @@ public class Locate extends AppCompatActivity {
     }
 
     public void makeMove(int x, int y, int value){
+        MediaPlayer ring= MediaPlayer.create(Locate.this,R.raw.shoot);
+        ring.start();
+        ring=null;
         board[x][y]=value;
         verifyGame();
     }
@@ -225,6 +241,10 @@ public class Locate extends AppCompatActivity {
             if(isComplete()){
                 TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
                 turnMessageView.setText("TIED GAME");
+                winnertheme= MediaPlayer.create(Locate.this,R.raw.tied);
+                theme.stop();
+                winnertheme.start();
+                resetMode();
             }
             else{
                 changeTurn();
@@ -329,13 +349,18 @@ public class Locate extends AppCompatActivity {
     }
 
     public void setWinnerMessage(int player){
-        TextView turnMessageView=(TextView) findViewById(R.id.turnMessage);
-        if(player == 1){
-            turnMessageView.setText(playerOneCountry+" wins");
+        theme.stop();
+        Intent intent = new Intent(Locate.this, winnerScreen.class);
+        if(player==1){
+            intent.putExtra("winner",playerOneCountry);
         }
         else{
-            turnMessageView.setText(playerTwoCountry+" wins");
+            intent.putExtra("winner",playerTwoCountry);
         }
+        intent.putExtra("mode",mode);
+        intent.putExtra("country",playerOneCountry);
+        startActivity(intent);
+        this.finish();
     }
 
     public void setAllButtonsEnabled(boolean b){
@@ -484,5 +509,10 @@ public class Locate extends AppCompatActivity {
             btn=(Button) findViewById(R.id.Btn22);
         }
         btn.performClick();
+    }
+
+    @Override
+    public void onBackPressed(){
+
     }
 }
