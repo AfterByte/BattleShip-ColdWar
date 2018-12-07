@@ -74,6 +74,7 @@ public class TeamSelection extends AppCompatActivity {
     public void onBackPressed(){
         Intent intent = new Intent(TeamSelection.this, MainActivity.class);
         theme.stop();
+        theme=null;
         startActivity(intent);
         this.finish();
     }

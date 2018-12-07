@@ -1,6 +1,5 @@
 package com.afterbyte.battleship_coldwar;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +12,8 @@ import android.widget.TextView;
 
 public class Locate extends AppCompatActivity {
 
-    MediaPlayer theme;
+    MediaPlayer theme, winnertheme,ring,ring2;
 
-    MediaPlayer winnertheme;
 
     private String playerOneCountry, playerTwoCountry;
     private int playerTurn;
@@ -29,6 +27,9 @@ public class Locate extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_locate);
+
+        ring= MediaPlayer.create(Locate.this,R.raw.shoot);
+        ring2= MediaPlayer.create(Locate.this,R.raw.shoot);
 
         theme= MediaPlayer.create(Locate.this,R.raw.gametheme);
         theme.start();
@@ -229,9 +230,7 @@ public class Locate extends AppCompatActivity {
     }
 
     public void makeMove(int x, int y, int value){
-        MediaPlayer ring= MediaPlayer.create(Locate.this,R.raw.shoot);
         ring.start();
-        ring=null;
         board[x][y]=value;
         verifyGame();
     }
@@ -251,19 +250,15 @@ public class Locate extends AppCompatActivity {
             }
         }
         else if(winner==1){
-            setAllButtonsEnabled(false);
             setWinnerMessage(1);
-            resetMode();
         }
         else{
-            setAllButtonsEnabled(false);
             setWinnerMessage(2);
-            resetMode();
         }
     }
 
     public int winCheck(){
-        //RETURN 0 IF NOBODY WINS, 1 IF PLAER 1 WINS, 2 IF PLAYER 2 WINS
+        //RETURN 0 IF NOBODY WINS, 1 IF PLAYER 1 WINS, 2 IF PLAYER 2 WINS
         int sum=0;
         //Check file per file
         for(int x=0;x<3;x++){
@@ -432,14 +427,8 @@ public class Locate extends AppCompatActivity {
     }
 
     public void computerMove(){
-        try{
-            setAllButtonsEnabled(false);
-            //Thread.sleep(200);
-            setAllButtonsEnabled(true);
-        }
-        catch (Exception e){
-
-        }
+        //FIRST ALGORYMTH
+        /*
         boolean flag=false;
         int x,y, cont=0;
         do{
@@ -457,7 +446,9 @@ public class Locate extends AppCompatActivity {
         else{
             activateButton(x,y);
         }
+        */
 
+        //NEW ALGORYMTH
     }
 
     public int roundNumber(double d){

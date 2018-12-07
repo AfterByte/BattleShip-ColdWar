@@ -48,7 +48,7 @@ public class winnerScreen extends AppCompatActivity {
     public void BtnResetAction(View v){
         winnertheme.stop();
         Intent intent = new Intent(winnerScreen.this, Locate.class);
-        intent.putExtra("country","Russia");
+        intent.putExtra("country",country);
         intent.putExtra("mode",mode);
         startActivity(intent);
         this.finish();

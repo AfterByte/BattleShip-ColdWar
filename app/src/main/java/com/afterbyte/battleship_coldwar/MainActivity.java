@@ -51,12 +51,12 @@ public class MainActivity extends Activity {
         this.finish();
     }
 
-    public void waitActivity(){
-        try{
-            Thread.sleep(1100);
-        }
-        catch (Exception e){
 
-        }
+
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 }
