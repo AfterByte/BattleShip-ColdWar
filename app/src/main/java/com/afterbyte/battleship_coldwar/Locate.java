@@ -76,6 +76,7 @@ public class Locate extends AppCompatActivity {
     public void Btn00Action(View v){
         Button btn00=(Button) findViewById(R.id.btn00);
         setFace(btn00);
+        btn00.setEnabled(false);
         if(playerTurn==1){
             makeMove(0,0,1);
             if(mode==1){
@@ -85,8 +86,6 @@ public class Locate extends AppCompatActivity {
         else if(playerTurn==2){
             makeMove(0,0,10);
         }
-        btn00.setEnabled(false);
-
     }
 
     public void Btn01Action(View v){
@@ -230,7 +229,12 @@ public class Locate extends AppCompatActivity {
     }
 
     public void makeMove(int x, int y, int value){
-        ring.start();
+        if(playerTurn==1){
+            ring.start();
+        }
+        else{
+            ring2.start();
+        }
         board[x][y]=value;
         verifyGame();
     }
@@ -449,6 +453,13 @@ public class Locate extends AppCompatActivity {
         */
 
         //NEW ALGORYMTH
+        try {
+            Thread.sleep(100);
+        }
+        catch (Exception e){}
+        Intelligence i=new Intelligence(board);
+        activateButton(i.getxMove(),i.getyMove());
+        i=null;
     }
 
     public int roundNumber(double d){
