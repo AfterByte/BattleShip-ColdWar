@@ -16,9 +16,9 @@ public class Locate extends AppCompatActivity {
 
 
     private String playerOneCountry, playerTwoCountry;
-    private int playerTurn;
+    private int playerTurn,winCount;
     private int[][] board=new int[3][3];
-
+    private boolean p1Win=false;
     private int mode;
 
     @Override
@@ -37,6 +37,8 @@ public class Locate extends AppCompatActivity {
         restartBackgroud();
 
         mode=getIntent().getExtras().getInt("mode");
+
+        winCount=getIntent().getExtras().getInt("winCount");
 
 
         playerOneCountry=getIntent().getExtras().getString("country");
@@ -352,12 +354,16 @@ public class Locate extends AppCompatActivity {
         Intent intent = new Intent(Locate.this, winnerScreen.class);
         if(player==1){
             intent.putExtra("winner",playerOneCountry);
+            p1Win=true;
+            winCount++;
         }
         else{
             intent.putExtra("winner",playerTwoCountry);
         }
         intent.putExtra("mode",mode);
         intent.putExtra("country",playerOneCountry);
+        intent.putExtra("winCount",winCount);
+        intent.putExtra("p1Win",p1Win);
         startActivity(intent);
         this.finish();
     }
@@ -454,12 +460,10 @@ public class Locate extends AppCompatActivity {
 
         //NEW ALGORYMTH
         try {
-            Thread.sleep(100);
+            Intelligence i=new Intelligence(board);
+            activateButton(i.getxMove(),i.getyMove());
         }
         catch (Exception e){}
-        Intelligence i=new Intelligence(board);
-        activateButton(i.getxMove(),i.getyMove());
-        i=null;
     }
 
     public int roundNumber(double d){

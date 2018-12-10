@@ -80,6 +80,7 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/roundedbtn"
         android:fontFamily="@font/raleway_regular"
+        android:onClick="profile"
         android:text="@string/btnProfile"
         android:textColor="#FFFFFF"
         android:textSize="24sp"

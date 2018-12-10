@@ -51,6 +51,15 @@ public class MainActivity extends Activity {
         this.finish();
     }
 
+    public void profile(View v){
+        theme.stop();
+        MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.btnfx);
+        ring.start();
+        Intent intent = new Intent(MainActivity.this, ProfileActivitie.class);
+        startActivity(intent);
+        this.finish();
+    }
+
 
 
     @Override

@@ -12,7 +12,6 @@
         android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/roundedbtn"
         android:clickable="true"
@@ -23,8 +22,7 @@
         android:textColor="@color/fontPrimary"
         android:textSize="16dip"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/BtnHome"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -65,7 +63,6 @@
         android:id="@+id/BtnHome"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/roundedbtn"
@@ -76,6 +73,17 @@
         android:textSize="16dip"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/rateID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BtnHome"
+        app:layout_constraintStart_toEndOf="@+id/BtnReset" />
 </android.support.constraint.ConstraintLayout>

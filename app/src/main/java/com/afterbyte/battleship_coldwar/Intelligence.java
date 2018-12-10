@@ -244,7 +244,7 @@ public class Intelligence {
             yMove=r.getY();
         }
         else{
-            bestMove(r.getRight());
+            goodMove(r.getRight());
         }
     }
 

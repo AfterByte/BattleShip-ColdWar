@@ -48,6 +48,8 @@ public class TeamSelection extends AppCompatActivity {
 
         intent.putExtra("mode",mode);
 
+        intent.putExtra("winCounter",0);
+
         startActivity(intent);
         this.finish();
     }
@@ -60,6 +62,8 @@ public class TeamSelection extends AppCompatActivity {
         intent.putExtra("country","Russia");
 
         intent.putExtra("mode",mode);
+
+        intent.putExtra("winCount",0);
 
         startActivity(intent);
         this.finish();
