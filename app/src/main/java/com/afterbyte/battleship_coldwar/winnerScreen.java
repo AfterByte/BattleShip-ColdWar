@@ -48,7 +48,7 @@ public class winnerScreen extends AppCompatActivity {
         country=getIntent().getExtras().getString("country");
         winCount=getIntent().getExtras().getInt("winCount");
         p1Win=getIntent().getExtras().getBoolean("p1Win");
-        rateView.setText("RATE: "+winCount);
+        rateView.setText("PTS: "+winCount);
         if(winner.equals("USA")){
             winnertheme= MediaPlayer.create(winnerScreen.this,R.raw.usa);
             message.setText("USA WINS");
@@ -61,7 +61,7 @@ public class winnerScreen extends AppCompatActivity {
         }
         winnertheme.start();
         if(!p1Win){
-            updateData();
+            //updateData();
         }
     }
 
@@ -108,6 +108,7 @@ public class winnerScreen extends AppCompatActivity {
                 message.setText("NO EXISte");
                 ud = new UserData();
                 ud.setTotalGames(1);
+                ud.setBestRate(0);
                 if (winner.equals("USA") && p1Win) {
                     ud.setNewRate(ud.getUsaRates(),winCount);
                 } else if (winner.equals("Russia") && p1Win) {
@@ -139,7 +140,7 @@ public class winnerScreen extends AppCompatActivity {
     }
 
     public void BtnHomeAction(View v){
-        updateData();
+        //updateData();
         winnertheme.stop();
         Intent intent = new Intent(winnerScreen.this, MainActivity.class);
         startActivity(intent);

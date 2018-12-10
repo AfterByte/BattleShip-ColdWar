@@ -3,12 +3,17 @@ package com.afterbyte.battleship_coldwar;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.service.autofill.UserData;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class MainActivity extends Activity {
 
@@ -29,6 +34,24 @@ public class MainActivity extends Activity {
         */
         theme= MediaPlayer.create(MainActivity.this,R.raw.maintheme);
         theme.start();
+        /*
+        try{
+            String fileName=this.getFilesDir().getPath().toString()+"/ColdWarUserData.dat";
+            File file=new File(fileName,"rw");
+            if(!file.exists()){
+                try {
+                    FileOutputStream fos = new FileOutputStream(fileName);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                    com.afterbyte.battleship_coldwar.UserData ud = new com.afterbyte.battleship_coldwar.UserData();
+                    ud.setTotalGames(0);
+                    oos.writeObject(ud);
+                }
+                catch (Exception e){}
+            }
+        }
+        catch (Exception e){}
+        */
     }
 
     public void localOnePlayer(View v){

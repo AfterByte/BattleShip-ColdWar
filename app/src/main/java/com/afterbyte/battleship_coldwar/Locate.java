@@ -16,7 +16,7 @@ public class Locate extends AppCompatActivity {
 
 
     private String playerOneCountry, playerTwoCountry;
-    private int playerTurn,winCount;
+    private int playerTurn,winCount=1300;
     private int[][] board=new int[3][3];
     private boolean p1Win=false;
     private int mode;
@@ -38,7 +38,7 @@ public class Locate extends AppCompatActivity {
 
         mode=getIntent().getExtras().getInt("mode");
 
-        winCount=getIntent().getExtras().getInt("winCount");
+        //winCount=getIntent().getExtras().getInt("winCount");
 
 
         playerOneCountry=getIntent().getExtras().getString("country");
@@ -233,6 +233,7 @@ public class Locate extends AppCompatActivity {
     public void makeMove(int x, int y, int value){
         if(playerTurn==1){
             ring.start();
+            winCount-=100;
         }
         else{
             ring2.start();
@@ -355,7 +356,6 @@ public class Locate extends AppCompatActivity {
         if(player==1){
             intent.putExtra("winner",playerOneCountry);
             p1Win=true;
-            winCount++;
         }
         else{
             intent.putExtra("winner",playerTwoCountry);
@@ -365,6 +365,7 @@ public class Locate extends AppCompatActivity {
         intent.putExtra("winCount",winCount);
         intent.putExtra("p1Win",p1Win);
         startActivity(intent);
+        p1Win=false;
         this.finish();
     }
 
